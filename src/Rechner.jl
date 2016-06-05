@@ -43,7 +43,7 @@ function Rechentrainer()
 
                         else
                                 resultComp[i] = b[i] - a[i]
-                                text = @sprintf "%i + %i = " b[i] a[i];
+                                text = @sprintf "%i - %i = " b[i] a[i];
                                 print(text)
                         end
 
