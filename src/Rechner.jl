@@ -104,7 +104,7 @@ function Rechentrainer()
                         text = @sprintf "%i : %i = ?\t" resultComp[i] a[i];
                         print(text)
                         result[i] = parse(Int, chomp(readline()))
-                        text = @sprintf "Rest?\t" resultComp[i] a[i];
+                        text = @sprintf "Rest?\t";
                         print(text)
                         result2[i] = parse(Int, chomp(readline()))
                 end
