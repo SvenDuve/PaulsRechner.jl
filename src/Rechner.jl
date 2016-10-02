@@ -126,7 +126,7 @@ function Rechentrainer()
 
         elseif v=="r"
                 text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
-                text3 = @sprintf "Du hast %i von %i Reste der Division gefunden!" sum(result2 .== c) n;
+                text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
                 println(text2)
                 println(text3)
 
