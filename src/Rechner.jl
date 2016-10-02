@@ -8,11 +8,13 @@ function Rechentrainer()
         println("m für Multiplikation")
         println("d für Divison")
         println("f für Finde den Platzhalter")
+        println("r für Division mit Rest")
 
 
         v = chomp(readline())
         n = 10
         result = zeros(Int, n)
+        result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
         flush(STDIN)
 
@@ -89,6 +91,21 @@ function Rechentrainer()
                         print(text)
                         #print("x = ")
                         result[i] = parse(Int, chomp(readline()))
+                end
+
+        elseif v=="r"
+                println("Bestimme das Ergebnis der Division mit Rest:")
+                a = rand(1:10, n)
+                b = rand(1:10, n)
+                c = rand(1:10, n)
+
+                for i in (1:n)
+                        resultComp[i] = a[i] * b[i] + c[i]
+                        text = @sprintf "%i : %i = ?\t\t Rest ? " resultComp[i] a[i] ;
+                        print(text)
+                        #print("x = ")
+                        result[i] = parse(Int, chomp(readline()))
+                        result2[i] = parse(Int, chomp(readline()))
                 end
 
 
