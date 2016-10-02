@@ -95,13 +95,14 @@ function Rechentrainer()
 
         elseif v=="r"
                 println("Bestimme das Ergebnis der Division mit Rest:")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
-                c = rand(1:10, n)
+                a = rand(10:100, n)
+                b = rand(1:9, n)
+                c = zeros(Int64, n)
 
                 for i in (1:n)
-                        resultComp[i] = a[i] * b[i] + c[i]
-                        text = @sprintf "%i : %i = ?\t" resultComp[i] a[i];
+                        c[i] = a[i] % b[i]
+                        resultComp[i] = (a[i] - c[i]) / b[i]
+                        text = @sprintf "%i : %i = ?\t" a[i] b[i];
                         print(text)
                         result[i] = parse(Int, chomp(readline()))
                         text = @sprintf "Rest?\t";
@@ -124,7 +125,7 @@ function Rechentrainer()
                 println(text2)
 
         elseif v=="r"
-                text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== b) n;
+                text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
                 text3 = @sprintf "Du hast %i von %i Reste der Division gefunden!" sum(result2 .== c) n;
                 println(text2)
                 println(text3)
