@@ -101,10 +101,11 @@ function Rechentrainer()
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i] + c[i]
-                        text = @sprintf "%i : %i = ?\t\t Rest ? " resultComp[i] a[i] ;
+                        text = @sprintf "%i : %i = ?\t" resultComp[i] a[i];
                         print(text)
-                        #print("x = ")
                         result[i] = parse(Int, chomp(readline()))
+                        text = @sprintf "Rest?\t" resultComp[i] a[i];
+                        print(text)
                         result2[i] = parse(Int, chomp(readline()))
                 end
 
@@ -121,6 +122,13 @@ function Rechentrainer()
         elseif v=="d"||v=="f"
                 text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
                 println(text2)
+
+        elseif v=="r"
+                test2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
+                test3 = @sprintf "Du hast %i von %i Reste der Division gefunden!" sum(result2 .== c) n;
+                println(text2)
+                println(text3)
+
         end
 
 end
