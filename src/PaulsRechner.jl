@@ -3,7 +3,7 @@ module PaulsRechner
 # package code goes here
 export
         Rechentrainer
-        EmmasRechner
+        Emma
 
 
 include("Rechner.jl")

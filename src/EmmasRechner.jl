@@ -1,4 +1,4 @@
-function EmmasRechner()
+function Emma()
 
         println("Willkommen Emma zum Rechentrainer")
         println("============================")
