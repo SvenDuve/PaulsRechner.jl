@@ -2,7 +2,7 @@ module PaulsRechner
 
 # package code goes here
 export
-        Rechentrainer
+        Rechentrainer,
         Emma
 
 
