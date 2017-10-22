@@ -21,8 +21,8 @@ function Emma()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
 
                 for i in (1:n)
                         text = @sprintf "%i + %i = " a[i] b[i];
@@ -34,8 +34,8 @@ function Emma()
 
         elseif v=="s"
                 println("Subtraktion\n")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
 
                 for i in (1:n)
                         if a[i] > b[i]
