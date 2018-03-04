@@ -12,7 +12,7 @@ function Emma()
 
 
         v = chomp(readline())
-        n = 5
+        n = 10
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
@@ -21,8 +21,8 @@ function Emma()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:20, n)
-                b = rand(1:20, n)
+                a = rand(1:50, n)
+                b = rand(1:50, n)
 
                 for i in (1:n)
                         text = @sprintf "%i + %i = " a[i] b[i];
@@ -34,8 +34,8 @@ function Emma()
 
         elseif v=="s"
                 println("Subtraktion\n")
-                a = rand(1:20, n)
-                b = rand(1:20, n)
+                a = rand(1:50, n)
+                b = rand(1:50, n)
 
                 for i in (1:n)
                         if a[i] > b[i]
