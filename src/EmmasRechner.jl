@@ -118,14 +118,14 @@ function Emma()
 
         if v=="a"||v=="s"||v=="m"
 
-                text2 = @sprintf "Emma, Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
+                text2 = @sprintf "Emma, das hast du ja ganz Dufte gemacht. Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
                 println(text2)
         elseif v=="d"||v=="f"
-                text2 = @sprintf "Emma, Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
+                text2 = @sprintf "Ja fein gell... Emma, Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
                 println(text2)
 
         elseif v=="r"
-                text2 = @sprintf "Emma, Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
+                text2 = @sprintf "Emma, Du hast %i von %i Quotienten gefunden, hi hi hi...!" sum(result .== resultComp) n;
                 text3 = @sprintf "Emma, Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
                 println(text2)
                 println(text3)
