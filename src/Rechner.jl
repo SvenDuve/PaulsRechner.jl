@@ -21,8 +21,8 @@ function Rechentrainer()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:100, n)
-                b = rand(1:100, n)
+                a = rand(1:10000, n)
+                b = rand(1:10000, n)
 
                 for i in (1:n)
                         text = @sprintf "%i + %i = " a[i] b[i];
@@ -34,8 +34,8 @@ function Rechentrainer()
 
         elseif v=="s"
                 println("Subtraktion\n")
-                a = rand(1:100, n)
-                b = rand(1:100, n)
+                a = rand(1:10000, n)
+                b = rand(1:10000, n)
 
                 for i in (1:n)
                         if a[i] > b[i]
@@ -57,8 +57,8 @@ function Rechentrainer()
 
         elseif v=="m"
                 println("Multiplikation\n")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
 
                 for i in (1:n)
                         text = @sprintf "%i * %i = " a[i] b[i];
@@ -70,8 +70,8 @@ function Rechentrainer()
 
         elseif v=="d"
                 println("Divison")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
@@ -82,8 +82,8 @@ function Rechentrainer()
 
         elseif v=="f"
                 println("Finde den Platzhalter:")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
@@ -95,8 +95,8 @@ function Rechentrainer()
 
         elseif v=="r"
                 println("Bestimme das Ergebnis der Division mit Rest:")
-                a = rand(10:100, n)
-                b = rand(1:9, n)
+                a = rand(10:1000, n)
+                b = rand(1:20, n)
                 c = zeros(Int64, n)
 
                 for i in (1:n)
