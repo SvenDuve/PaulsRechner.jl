@@ -129,7 +129,8 @@ function Rechentrainer()
         end
 
     endTime = Time(now())
-    timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
+    #timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
+    timeElapsed = convert(Int64, round(Float64(endTime-startTime)/1000000000))
 
         if v=="a"||v=="s"||v=="m"
 
