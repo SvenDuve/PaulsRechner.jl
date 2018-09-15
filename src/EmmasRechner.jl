@@ -130,7 +130,7 @@ function Emma()
 
     endTime = Dates.Time(now())
     #timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
-    timeElapsed = convert(Int64, round(Float64(endTime-startTime)/1000000000))
+    timeElapsed = convert(Int64, round(Dates.value(endTime - startTime)/1000000000))
 
 
     if timeElapsed < zeitLimit
