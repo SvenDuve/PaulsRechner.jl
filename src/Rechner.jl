@@ -132,58 +132,35 @@ function Rechentrainer()
     #timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
     timeElapsed = convert(Int64, round(Float64(endTime-startTime)/1000000000))
 
-        if v=="a"||v=="s"||v=="m"
+    if timeElapsed < zeitLimit
 
-                text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
+        zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
 
-                if timeElapsed < zeitLimit
+    else
 
-                    zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
+        zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
 
-                else
+    end
 
-                    zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
+    if v=="a"||v=="s"||v=="m"
 
-                end
+            text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
+            println(text2)
 
+    elseif v=="d"||v=="f"
+            text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
+            println(text2)
 
-                println(text2)
-                println(zeitAnsage)
+    elseif v=="r"
 
+            text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
+            text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
 
-        elseif v=="d"||v=="f"
-                text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
+            println(text2)
+            println(text3)
 
-                if timeElapsed < zeitLimit
+    end
 
-                    zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
-
-                else
-
-                    zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
-
-                end
-
-                println(text2)
-                println(zeitAnsage)
-
-        elseif v=="r"
-                text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
-                text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
-                if timeElapsed < zeitLimit
-
-                    zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
-
-                else
-
-                    zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
-
-                end
-
-                println(text2)
-                println(text3)
-                println(zeitAnsage)
-
-        end
+    println(zeitAnsage)
 
 end
