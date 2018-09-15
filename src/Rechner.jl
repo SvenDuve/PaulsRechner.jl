@@ -13,6 +13,7 @@ function Rechentrainer()
 
         v = chomp(readline())
         n = 20
+        zeitLimit = 7.5 * n
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
@@ -23,6 +24,8 @@ function Rechentrainer()
                 print("Addition:\n")
                 a = rand(1:10000, n)
                 b = rand(1:10000, n)
+
+                startTime = Time(now())
 
                 for i in (1:n)
                         text = @sprintf "%i + %i = " a[i] b[i];
@@ -36,6 +39,8 @@ function Rechentrainer()
                 println("Subtraktion\n")
                 a = rand(1:10000, n)
                 b = rand(1:10000, n)
+
+                startTime = Time(now())
 
                 for i in (1:n)
                         if a[i] > b[i]
@@ -60,6 +65,8 @@ function Rechentrainer()
                 a = rand(1:20, n)
                 b = rand(1:20, n)
 
+                startTime = Time(now())
+
                 for i in (1:n)
                         text = @sprintf "%i * %i = " a[i] b[i];
                         print(text)
@@ -73,6 +80,8 @@ function Rechentrainer()
                 a = rand(1:20, n)
                 b = rand(1:20, n)
 
+                startTime = Time(now())
+
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
                         text = @sprintf "%i : %i = " resultComp[i] a[i];
@@ -84,6 +93,8 @@ function Rechentrainer()
                 println("Finde den Platzhalter:")
                 a = rand(1:20, n)
                 b = rand(1:20, n)
+
+                startTime = Time(now())
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
@@ -98,6 +109,8 @@ function Rechentrainer()
                 a = rand(10:1000, n)
                 b = rand(1:20, n)
                 c = zeros(Int64, n)
+
+                startTime = Time(now())
 
                 for i in (1:n)
                         c[i] = a[i] % b[i]
@@ -115,11 +128,28 @@ function Rechentrainer()
                 println("Abbruch!!")
         end
 
+    endTime = Time(now())
+    timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
 
         if v=="a"||v=="s"||v=="m"
 
                 text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
+
+                if timeElapsed < zeitLimit
+
+                    zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
+
+                else
+
+                    zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
+
+                end
+
+
                 println(text2)
+                println(zeitAnsage)
+
+
         elseif v=="d"||v=="f"
                 text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
                 println(text2)
