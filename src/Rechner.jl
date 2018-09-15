@@ -25,7 +25,7 @@ function Rechentrainer()
                 a = rand(1:10000, n)
                 b = rand(1:10000, n)
 
-                startTime = Time(now())
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
                         text = @sprintf "%i + %i = " a[i] b[i];
