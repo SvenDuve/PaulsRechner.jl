@@ -12,7 +12,7 @@ function Rechentrainer()
 
 
         v = chomp(readline())
-        n = 10
+        n = 20
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
