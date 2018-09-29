@@ -9,6 +9,7 @@ function Rechentrainer()
         println("d für Divison")
         println("f für Finde den Platzhalter")
         println("r für Division mit Rest")
+        println("t für Tausender addieren")
 
 
         v = chomp(readline())
@@ -22,8 +23,8 @@ function Rechentrainer()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:10000, n)
-                b = rand(1:10000, n)
+                a = convert.(Int64, round.((1000 * rand(n))))
+                b = convert.(Int64, round.((1000 * rand(n))))
 
                 startTime = Dates.Time(now())
 
@@ -37,8 +38,9 @@ function Rechentrainer()
 
         elseif v=="s"
                 println("Subtraktion\n")
-                a = rand(1:10000, n)
-                b = rand(1:10000, n)
+
+                a = convert.(Int64, round.((1000 * rand(n))))
+                b = convert.(Int64, round.((1000 * rand(n))))
 
                 startTime = Dates.Time(now())
 
@@ -123,6 +125,22 @@ function Rechentrainer()
                         result2[i] = parse(Int, chomp(readline()))
                 end
 
+        elseif v=="t"
+
+            print("Addition von Tausendern:\n")
+            a = convert.(Int64, round.((100000 * rand(n)), -3))
+            b = convert.(Int64, round.((100000 * rand(n)), -3))
+
+            startTime = Dates.Time(now())
+
+            for i in (1:n)
+                    text = @sprintf "%i + %i = " a[i] b[i];
+                    print(text)
+                    result[i] = parse(Int, chomp(readline()))
+                    resultComp[i] = a[i] + b[i]
+            end
+
+
 
         else
                 println("Abbruch!!")
@@ -142,7 +160,7 @@ function Rechentrainer()
 
     end
 
-    if v=="a"||v=="s"||v=="m"
+    if v=="a"||v=="s"||v=="m"||v=="t"
 
             text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
             println(text2)
