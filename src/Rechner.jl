@@ -9,10 +9,12 @@ function Rechentrainer()
         println("d für Divison")
         println("f für Finde den Platzhalter")
         println("r für Division mit Rest")
+        println("t für Tausender addieren")
 
 
         v = chomp(readline())
-        n = 10
+        n = 20
+        zeitLimit = 7.5 * n
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
@@ -21,12 +23,13 @@ function Rechentrainer()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:100, n)
-                b = rand(1:100, n)
+                a = convert.(Int64, round.((1000 * rand(n))))
+                b = convert.(Int64, round.((1000 * rand(n))))
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
-                        text = @sprintf "%i + %i = " a[i] b[i];
-                        print(text)
+                        print(string(a[i], " + ", b[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                         resultComp[i] = a[i] + b[i]
                 end
@@ -34,19 +37,20 @@ function Rechentrainer()
 
         elseif v=="s"
                 println("Subtraktion\n")
-                a = rand(1:100, n)
-                b = rand(1:100, n)
+
+                a = convert.(Int64, round.((1000 * rand(n))))
+                b = convert.(Int64, round.((1000 * rand(n))))
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
                         if a[i] > b[i]
                                 resultComp[i] = a[i] - b[i]
-                                text = @sprintf "%i - %i = " a[i] b[i];
-                                print(text)
+                                print(string(a[i], " - ", b[i], " = "))
 
                         else
                                 resultComp[i] = b[i] - a[i]
-                                text = @sprintf "%i - %i = " b[i] a[i];
-                                print(text)
+                                print(string(b[i], " - ", a[i], " = "))
                         end
 
                         result[i] = parse(Int, chomp(readline()))
@@ -57,12 +61,13 @@ function Rechentrainer()
 
         elseif v=="m"
                 println("Multiplikation\n")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
-                        text = @sprintf "%i * %i = " a[i] b[i];
-                        print(text)
+                        print(string(a[i], " * ", b[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                         resultComp[i] = a[i] * b[i]
                 end
@@ -70,66 +75,100 @@ function Rechentrainer()
 
         elseif v=="d"
                 println("Divison")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
-                        text = @sprintf "%i : %i = " resultComp[i] a[i];
-                        print(text)
+                        print(string(resultComp[i], " : ", a[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                 end
 
         elseif v=="f"
                 println("Finde den Platzhalter:")
-                a = rand(1:10, n)
-                b = rand(1:10, n)
+                a = rand(1:20, n)
+                b = rand(1:20, n)
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
-                        text = @sprintf "%i * x = %i\t\tx = " a[i] resultComp[i];
-                        print(text)
-                        #print("x = ")
+                        print(string(a[i], " * x = ", resultComp[i], "\t x = "))
                         result[i] = parse(Int, chomp(readline()))
                 end
 
         elseif v=="r"
                 println("Bestimme das Ergebnis der Division mit Rest:")
-                a = rand(10:100, n)
-                b = rand(1:9, n)
+                a = rand(10:1000, n)
+                b = rand(1:20, n)
                 c = zeros(Int64, n)
+
+                startTime = Dates.Time(now())
 
                 for i in (1:n)
                         c[i] = a[i] % b[i]
                         resultComp[i] = (a[i] - c[i]) / b[i]
-                        text = @sprintf "%i : %i = ?\t" a[i] b[i];
-                        print(text)
+                        print(string(a[i], " : ", b[i], " =  ?\t"))
                         result[i] = parse(Int, chomp(readline()))
-                        text = @sprintf "Rest?\t";
-                        print(text)
+                        print("Rest?\t")
                         result2[i] = parse(Int, chomp(readline()))
                 end
+
+        elseif v=="t"
+
+            print("Addition von Tausendern:\n")
+            a = convert.(Int64, round.((100000 * rand(n)), -3))
+            b = convert.(Int64, round.((100000 * rand(n)), -3))
+
+            startTime = Dates.Time(now())
+
+            for i in (1:n)
+                    print(string(a[i], " + ", b[i], " = "))
+                    result[i] = parse(Int, chomp(readline()))
+                    resultComp[i] = a[i] + b[i]
+            end
+
 
 
         else
                 println("Abbruch!!")
         end
 
+    endTime = Dates.Time(now())
+    #timeElapsed = Int64(round(Float64(endTime-startTime)/1000000000))
+    timeElapsed = convert(Int64, round(Dates.value(endTime - startTime)/1000000000))
 
-        if v=="a"||v=="s"||v=="m"
+    if timeElapsed < zeitLimit
 
-                text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
-                println(text2)
-        elseif v=="d"||v=="f"
-                text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
-                println(text2)
+        zeitAnsage = string("Sehr gut, du warst um $(zeitLimit - timeElapsed) Sekunden schneller als erlaubt!")
 
-        elseif v=="r"
-                text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
-                text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
-                println(text2)
-                println(text3)
+    else
 
-        end
+        zeitAnsage = string("Schade!! Du warst um $(timeElapsed - zeitLimit) Sekunden zu langsam.")
+
+    end
+
+    if v=="a"||v=="s"||v=="m"||v=="t"
+
+            text2 = string("Du hast $(sum(result .== resultComp)) von $n Rechnungaufgaben richtig gelöst!")
+            println(text2)
+
+    elseif v=="d"||v=="f"
+            text2 = string("Du hast $(sum(result .== b)) von $n Rechnungaufgaben richtig gelöst!")
+            println(text2)
+
+    elseif v=="r"
+
+            text2 = string("Du hast $(sum(result .== resultComp)) von $n Quotienten gefunden!")
+            text3 = string("Du hast $(sum(result2 .== c)) von $n Resten der Division gefunden!")
+
+            println(text2)
+            println(text3)
+
+    end
+
+    println(zeitAnsage)
 
 end
