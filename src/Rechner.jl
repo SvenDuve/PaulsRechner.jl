@@ -125,12 +125,12 @@ function Rechentrainer()
             startTime = Dates.Time(now())
 
             for i in (1:n)
-<<<<<<< HEAD
+
                     print(string(a[i], " + ", b[i], " = "))
-=======
+
                     text = @sprintf "%i + %i = " a[i] b[i];
                     print(text)
->>>>>>> 3cee5c88fe11d34850dc90257fde68680aeb0be6
+
                     result[i] = parse(Int, chomp(readline()))
                     resultComp[i] = a[i] + b[i]
             end
@@ -147,48 +147,39 @@ function Rechentrainer()
 
     if timeElapsed < zeitLimit
 
-<<<<<<< HEAD
         zeitAnsage = string("Sehr gut, du warst um $(zeitLimit - timeElapsed) Sekunden schneller als erlaubt!")
 
     else
 
         zeitAnsage = string("Schade!! Du warst um $(timeElapsed - zeitLimit) Sekunden zu langsam.")
-=======
         zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
 
     else
 
         zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
->>>>>>> 3cee5c88fe11d34850dc90257fde68680aeb0be6
 
     end
 
     if v=="a"||v=="s"||v=="m"||v=="t"
 
-<<<<<<< HEAD
             text2 = string("Du hast $(sum(result .== resultComp)) von $n Rechnungaufgaben richtig gelöst!")
             println(text2)
 
     elseif v=="d"||v=="f"
             text2 = string("Du hast $(sum(result .== b)) von $n Rechnungaufgaben richtig gelöst!")
-=======
             text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
             println(text2)
 
     elseif v=="d"||v=="f"
             text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
->>>>>>> 3cee5c88fe11d34850dc90257fde68680aeb0be6
             println(text2)
 
     elseif v=="r"
 
-<<<<<<< HEAD
             text2 = string("Du hast $(sum(result .== resultComp)) von $n Quotienten gefunden!")
             text3 = string("Du hast $(sum(result2 .== c)) von $n Resten der Division gefunden!")
-=======
             text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
             text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
->>>>>>> 3cee5c88fe11d34850dc90257fde68680aeb0be6
 
             println(text2)
             println(text3)
