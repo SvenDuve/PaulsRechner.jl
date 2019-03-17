@@ -22,8 +22,8 @@ function Emma()
         if v=="a"
 
                 print("Addition:\n")
-                a = rand(1:50, n)
-                b = rand(1:50, n)
+                a = rand(1:500, n)
+                b = rand(1:500, n)
 
                 startTime = Dates.Time(now())
 
