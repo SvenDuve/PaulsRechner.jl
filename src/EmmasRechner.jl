@@ -17,7 +17,7 @@ function Emma()
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
-        flush(STDIN)
+        flush(stdin)
 
         if v=="a"
 
@@ -28,8 +28,7 @@ function Emma()
                 startTime = Dates.Time(now())
 
                 for i in (1:n)
-                        text = @sprintf "%i + %i = " a[i] b[i];
-                        print(text)
+                        print(string(a[i], " + ", b[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                         resultComp[i] = a[i] + b[i]
                 end
@@ -37,6 +36,7 @@ function Emma()
 
         elseif v=="s"
                 println("Subtraktion\n")
+
                 a = rand(1:50, n)
                 b = rand(1:50, n)
 
@@ -45,13 +45,12 @@ function Emma()
                 for i in (1:n)
                         if a[i] > b[i]
                                 resultComp[i] = a[i] - b[i]
-                                text = @sprintf "%i - %i = " a[i] b[i];
-                                print(text)
+                                print(string(a[i], " - ", b[i], " = "))
 
                         else
                                 resultComp[i] = b[i] - a[i]
-                                text = @sprintf "%i - %i = " b[i] a[i];
-                                print(text)
+                                print(string(b[i], " - ", a[i], " = "))
+
                         end
 
                         result[i] = parse(Int, chomp(readline()))
@@ -68,8 +67,7 @@ function Emma()
                 startTime = Dates.Time(now())
 
                 for i in (1:n)
-                        text = @sprintf "%i * %i = " a[i] b[i];
-                        print(text)
+                        print(string(a[i], " * ", b[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                         resultComp[i] = a[i] * b[i]
                 end
@@ -84,8 +82,7 @@ function Emma()
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
-                        text = @sprintf "%i : %i = " resultComp[i] a[i];
-                        print(text)
+                        print(string(resultComp[i], " : ", a[i], " = "))
                         result[i] = parse(Int, chomp(readline()))
                 end
 
@@ -98,9 +95,7 @@ function Emma()
 
                 for i in (1:n)
                         resultComp[i] = a[i] * b[i]
-                        text = @sprintf "%i * x = %i\t\tx = " a[i] resultComp[i];
-                        print(text)
-                        #print("x = ")
+                        print(string(a[i], " * x = ", resultComp[i], "\t x = "))
                         result[i] = parse(Int, chomp(readline()))
                 end
 
@@ -115,11 +110,9 @@ function Emma()
                 for i in (1:n)
                         c[i] = a[i] % b[i]
                         resultComp[i] = (a[i] - c[i]) / b[i]
-                        text = @sprintf "%i : %i = ?\t" a[i] b[i];
-                        print(text)
+                        print(string(a[i], " : ", b[i], " =  ?\t"))
                         result[i] = parse(Int, chomp(readline()))
-                        text = @sprintf "Rest?\t";
-                        print(text)
+                        print("Rest?\t")
                         result2[i] = parse(Int, chomp(readline()))
                 end
 
@@ -135,28 +128,34 @@ function Emma()
 
     if timeElapsed < zeitLimit
 
-        zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
+        zeitAnsage = string("Sehr gut, du warst um $(zeitLimit - timeElapsed) Sekunden schneller als erlaubt!")
 
     else
 
-        zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
+        zeitAnsage = string("Schade!! Du warst um $(timeElapsed - zeitLimit) Sekunden zu langsam.")
 
     end
+    
 
 
+        if v=="a"||v=="s"||v=="m"||v=="t"
 
-        if v=="a"||v=="s"||v=="m"
-
-                text2 = @sprintf "Emma, das hast du ja ganz Dufte gemacht. Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
+                text2 = string("Du hast $(sum(result .== resultComp)) von $n Rechnungaufgaben richtig gelöst!")
                 println(text2)
 
+
         elseif v=="d"||v=="f"
-                text2 = @sprintf "Ja fein gell... Emma, Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
+                text2 = string("Du hast $(sum(result .== b)) von $n Rechnungaufgaben richtig gelöst!")
+                #text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
                 println(text2)
 
         elseif v=="r"
-                text2 = @sprintf "Emma, Du hast %i von %i Quotienten gefunden, hi hi hi...!" sum(result .== resultComp) n;
-                text3 = @sprintf "Emma, Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
+
+                text2 = string("Du hast $(sum(result .== resultComp)) von $n Quotienten gefunden!")
+                text3 = string("Du hast $(sum(result2 .== c)) von $n Resten der Division gefunden!")
+                #text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
+                #text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
+
                 println(text2)
                 println(text3)
 

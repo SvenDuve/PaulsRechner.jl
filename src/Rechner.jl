@@ -18,7 +18,7 @@ function Rechentrainer()
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
-        flush(STDIN)
+        flush(stdin)
 
         if v=="a"
 
@@ -119,8 +119,8 @@ function Rechentrainer()
         elseif v=="t"
 
             print("Addition von Tausendern:\n")
-            a = convert.(Int64, round.((100000 * rand(n)), -3))
-            b = convert.(Int64, round.((100000 * rand(n)), -3))
+            a = Int.(round.(rand(n) * 100000, sigdigits=2))
+            b = Int.(round.(rand(n) * 100000, sigdigits=2))
 
             startTime = Dates.Time(now())
 
@@ -128,8 +128,8 @@ function Rechentrainer()
 
                     print(string(a[i], " + ", b[i], " = "))
 
-                    text = @sprintf "%i + %i = " a[i] b[i];
-                    print(text)
+                    #text = @sprintf "%i + %i = " a[i] b[i];
+                    #print(text)
 
                     result[i] = parse(Int, chomp(readline()))
                     resultComp[i] = a[i] + b[i]
@@ -152,16 +152,8 @@ function Rechentrainer()
     else
 
         zeitAnsage = string("Schade!! Du warst um $(timeElapsed - zeitLimit) Sekunden zu langsam.")
-        
-        end
+    end
                 
-#    zeitAnsage = @sprintf "Sehr gut, du warst um %i Sekunden schneller als erlaubt!" (zeitLimit - timeElapsed);
-
- #   else
-
-  #      zeitAnsage = @sprintf "Schade!! Du warst um %i Sekunden zu langsam." (timeElapsed - zeitLimit);
-
-   # end
 
     if v=="a"||v=="s"||v=="m"||v=="t"
 
@@ -170,19 +162,15 @@ function Rechentrainer()
 
     elseif v=="d"||v=="f"
             text2 = string("Du hast $(sum(result .== b)) von $n Rechnungaufgaben richtig gelöst!")
-            text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
-            println(text2)
-
-    elseif v=="d"||v=="f"
-            text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== b) n;
+            #text2 = @sprintf "Du hast %i von %i Rechnungaufgaben richtig gelöst!" sum(result .== resultComp) n;
             println(text2)
 
     elseif v=="r"
 
             text2 = string("Du hast $(sum(result .== resultComp)) von $n Quotienten gefunden!")
             text3 = string("Du hast $(sum(result2 .== c)) von $n Resten der Division gefunden!")
-            text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
-            text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
+            #text2 = @sprintf "Du hast %i von %i Quotienten gefunden!" sum(result .== resultComp) n;
+            #text3 = @sprintf "Du hast %i von %i Resten der Division gefunden!" sum(result2 .== c) n;
 
             println(text2)
             println(text3)
@@ -192,3 +180,4 @@ function Rechentrainer()
     println(zeitAnsage)
 
 end
+
