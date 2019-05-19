@@ -18,7 +18,7 @@ function Rechentrainer()
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
-        flush(stdin)
+        #flush(stdin)
 
         if v=="a"
 

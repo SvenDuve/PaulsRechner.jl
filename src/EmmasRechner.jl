@@ -1,5 +1,4 @@
 function Emma()
-
         println("Willkommen Emma zum Rechentrainer")
         println("============================")
         println("Welche Rechenart möchtest du trainiren?")
@@ -17,7 +16,7 @@ function Emma()
         result = zeros(Int, n)
         result2 = zeros(Int, n)
         resultComp = zeros(Int, n)
-        flush(stdin)
+        #flush(stdin)
 
         if v=="a"
 
